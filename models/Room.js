@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose');
 const roomSchema = new Schema ({
 
     name: {
-        type: String
+        type: String,
+        required: true
     },
     description: {
         type: String
@@ -11,7 +12,14 @@ const roomSchema = new Schema ({
     imageUrl: {
         type: String
     },
-    reviews: [],
+    reviews: [{ 
+        type: Schema.Types.ObjectId,
+        ref: 'Reviews' 
+    }],
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 },
     {timestamps: true }
 ); 
